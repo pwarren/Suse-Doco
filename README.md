@@ -4,7 +4,7 @@
 Really Quick
 ============
 
-Download the iso from: https://www.suse.com/products/suse-manager/download/#
+Sign up for, and Download the iso from: https://www.suse.com/products/suse-manager/download/#
 
 Install it, set up your hostname, run:
 ```
@@ -12,24 +12,20 @@ yast2 susmanager_setup
 ```
 
 Set up channel connections with:
-
 ```
 mgr-ncc-sync -c $CHANNEL_NAME
 ```
 
 Log in to the Suse Manager web interface, create some keys, and then run the bootstrap manager:
-
 ```
 mgr-bootstrap
 ```
 
 Then, on the client machine:
-
 ```
-wget https://suse-manager.FQ.DN/pub/bootsrap/bootstrap.sh
+wget http://suse-manager.FQ.DN/pub/bootsrap/bootstrap.sh
 sh ./bootstrap.sh
 ```
-
 
 Done!
 
@@ -41,7 +37,6 @@ In order to download the iso, you'll need to sign up for a trial, entering appro
 Next, you'll need to install the iso on a machine, virtual or othwerwise, accepting defaults, changing as necessary.
 
 Once installed, you'll need to set up your hostname so that the command
-
 ```
 hostname -f
 ```
@@ -50,34 +45,28 @@ works.  This can be done through yast by goign to Network Devices -> Network Set
 
 
 Next, run:
-
 ```
 yast2 susemanager_setup
 ```
 
-You'll need to provide it the relevant details for an SSL Certificate Authority, and the location and credentials for your database servers if you're not going to have them local. Next add your Novell mirror credentials, and then the setup will get things squared away!
+You'll need to provide it the relevant details for an SSL Certificate Authority, and the location and credentials for your database servers if you're not going to have them local. Next add your NCC mirror credentials, and then the setup will get things squared away!
 
-Once that's finished, you'll set up your repository sync's with:
-
+Once that's finished, you'll need to import some repositories. To list availabe repositories:
 ```
 mgr-ncc-sync -l
 ```
 
-which lists the available channels, to import channels
-
+To import:
 ```
 mgr-ncc-sync -c $CHANNEL_NAME
 ```
 
-
 Next, we'll configure a bootstrap script, which you can run on machines you wish to connect to Suse Manager:
-
 ```
 mgr-bootstrap
 ```
 
 And finally, on any client machine:
-
 ```
 wget http://<suse-manager-hostname>/pub/bootstrap/bootstrap.sh
 ./bootstrap.sh
